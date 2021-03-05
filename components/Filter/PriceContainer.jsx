@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { withStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchData, setMaxValue, setMinValue } from '../../redux/actions';
-import styled from 'styled-components';
 
 const PriсeContainer = styled.div`
-display: flex;
-flex-direction: column;
+display: grid;
+align-content: baseline;
+row-gap: 1rem;
 border-radius: 4px;
 `
 
 const PriсeInputContainer = styled.div`
-display: flex;
-flex-direction: row;
+display: grid;
+grid-auto-flow: column;
+row-gap: 1rem;
 `
 
 const PriсeInput = styled.input`
-width: 50%;
+width: 100%;
 font-family: Montserrat;
 font-style: normal;
 font-weight: 500;
@@ -82,14 +84,14 @@ function PriceContainer() {
     const startRange = 0;
     const endRange = 499000;
 
-    const [rangeValue, setRangeValue] = useState([startRange, endRange])
+    const [rangeValue, setRangeValue] = useState([startRange, endRange]);
 
     const handlePriceChange = (event, type) => {
         const { value } = event.target;
-        console.log(rangeValue, value, 'HANDLE CHANGE PRICE')
-        if (type === 'maxValue' && value > startRange) return;
-        if (type === 'minValue' && value < endRange) return;
-        const currentRange = [...range];
+        if (type === 'maxValue' && value > endRange) return;
+        if (type === 'minValue' && value < startRange) return;
+
+        const currentRange = [...rangeValue];
         if (type === 'maxValue') {
             currentRange[1] = value;
             setRangeValue(currentRange)
@@ -104,7 +106,6 @@ function PriceContainer() {
     }
 
     const handleRangeChange = (event, newValue) => {
-        console.log(newValue, 'NEWN')
         dispatch(setMinValue(newValue[0]))
         dispatch(setMaxValue(newValue[1]))
         setRangeValue(newValue);
@@ -118,7 +119,6 @@ function PriceContainer() {
             return brandQuery += `brands[][]=${brand.value}&`;
         }
         );
-        console.log(`${brandQuery}price[min]=${min}&price[max]=${max}`, rangeValue, 'EFFECT')
         dispatch(fetchData(`${brandQuery}price[min]=${min}&price[max]=${max}`))
 
     }, [rangeValue])

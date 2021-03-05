@@ -5,10 +5,16 @@ import { useDispatch } from 'react-redux'
 import { getAll } from '../redux/actions';
 
 function Catalog({ catalog, brands }) {
-
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getAll({catalog, brands}))
+    const availableBrands = brands.items.map(brand => {
+      return {
+        ...brand,
+        checked: false
+      }
+    });
+    dispatch(getAll({ catalog, brands: availableBrands }))
   }, [])
 
   return (

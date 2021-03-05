@@ -5,6 +5,9 @@ import BrandContainer from './BrandContainer';
 import PriceContainer from './PriceContainer';
 
 const FilterContainer = styled.section`
+display: grid;
+align-content: baseline;
+row-gap: 1rem;
 margin-right: 3%;
 &>h5 {
     color: #898989;

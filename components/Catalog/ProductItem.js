@@ -10,12 +10,16 @@ background: #FFFFFF;
 border: 1px solid #E6E6E6;
 box-sizing: border-box;
 border-radius: 4px;
+overflow: hidden;
+&:hover {
+    cursor:pointer;
+}
 `
 
 const ProductLabel = styled.div`
 position: absolute;
 width: 79px;
-height: 26px;
+height: 1.5rem;
 transform: translate(15px, 10px);
 text-align: center;
 font-style: normal;
@@ -26,6 +30,11 @@ text-transform: uppercase;
 color: #FFFFFF;
 background: #44C477;
 border-radius: 26px;
+
+@media all and (max-width: 600px) {
+    width: 60px;
+}
+
 `
 
 const BasketButton = styled.button`
@@ -34,6 +43,11 @@ padding: 8px 15px;
 border: 1px solid #DBDBDB;
 box-sizing: border-box;
 border-radius: 8px;
+&:hover {
+  border-color: rgb(118, 118, 118);
+  transition: background-color 0.2s ease-out 0s, border-color 0.2s ease 0s;
+  cursor:pointer;
+}
 `
 
 const CardImage = styled.img`
@@ -47,6 +61,10 @@ background-image: ${props => props.desktop ? `url(${props.desktop})` : `url(http
 
 @media (max-width: 375px) {
     background-image: ${props => props.mobile ? `url(${props.mobile})` : `url(https://imgproxy.by.dev.family/XoQ8QberZjOXPsFI7nyGJr6xsRfseJBWCeSh0rhUzHw/w:185/h:185/czM6Ly9nZXRsZW5zLzExL2NhdGVnb3J5X2ltYWdlLnBuZw.png)`};
+  }
+
+&:hover {
+    transform: scale(1.2);
   }
 `
 

@@ -4,7 +4,8 @@ import {
     SET_MAXVALUE,
     SET_BRANDS,
     GET_ALL,
-    ERROR_DATA
+    ERROR_DATA,
+    SET_CHECKBRANDS
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -41,12 +42,17 @@ const catalogReducer = (state = initialState, action) => {
                 ...state,
                 activeBrands: action.payload
             }
+        case SET_CHECKBRANDS: 
+        return {
+            ...state,
+            brands: action.payload.brands.items
+        }    
 
         case GET_ALL:
             return {
                 ...state,
                 catalog: action.payload.catalog,
-                brands: action.payload.brands.items
+                brands: action.payload.brands
             }
 
         case ERROR_DATA:

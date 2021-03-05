@@ -3,6 +3,7 @@ import {
   SET_BRANDS,
   SET_MAXVALUE,
   SET_MINVALUE,
+  SET_CHECKBRANDS,
   GET_ALL,
   ERROR_DATA
 } from './actionTypes';
@@ -57,5 +58,12 @@ export const getAll = (allData) => {
   return {
     type: GET_ALL,
     payload: allData
+  }
+}
+
+export const setChecked = (brands) => {
+  return {
+    type: SET_CHECKBRANDS,
+    payload: brands
   }
 }
