@@ -26,10 +26,19 @@ font-weight: 500;
 font-size: 1rem;
 line-height: 140%;
 border: 1px solid #DBDBDB;
+border-radius: 4px;
+padding: 0.8rem 0.65rem;
 text-align: center;
 ::placeholder {
     color: 1b1b1b;
-  }
+}
+&:first-child {
+    border-radius: 4px 0 0 4px;
+}
+&:nth-child(2) {
+    border-radius: 0 4px 4px 0;
+}
+
 `
 const RangeSlider = withStyles({
     root: {
