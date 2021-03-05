@@ -14,7 +14,7 @@ margin-right: 3%;
 const TitleCategory = styled.h3`
 font-style: normal;
 font-weight: bold;
-font-size: 32px;
+font-size: 2.3rem;
 line-height: 140%;
 color: #1B1B1B;
 `;

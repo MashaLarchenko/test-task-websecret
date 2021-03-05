@@ -10,7 +10,7 @@ flex-direction: column;
 font-family: Montserrat;
 font-style: normal;
 font-weight: 500;
-font-size: 14px;
+font-size: 1rem;
 line-height: 140%;
 &>div {
     display: flex;
@@ -22,7 +22,7 @@ const BrandInput = styled.input`
 font-family: Montserrat;
 font-style: normal;
 font-weight: 500;
-font-size: 14px;
+font-size: 1rem;
 line-height: 140%;
 border: 1px solid #DBDBDB;
 text-align: center;

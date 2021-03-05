@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const ProductItemContainer = styled.div`
 position: relative;
 display: flex;
-width: 242px;
+width: 100%;
 height: 401px;
 flex-direction: column;
 background: #FFFFFF;
@@ -20,7 +20,7 @@ transform: translate(15px, 10px);
 text-align: center;
 font-style: normal;
 font-weight: bold;
-font-size: 10px;
+font-size: 0.714rem;
 letter-spacing: 0.05em;
 text-transform: uppercase;
 color: #FFFFFF;
@@ -55,9 +55,18 @@ padding: 12px 16px;
 &>p{
     padding: 16px 0;
 }
-
 `
 
+const LikeButton = styled.button`
+`
+
+
+const ButtonContainer = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+
+`
 
 function ProductItem({ product }) {
     const { title, price, is_new, image } = product;
@@ -71,9 +80,15 @@ function ProductItem({ product }) {
                 <ProductContent>
                     <p className='title--medium'>{title}</p>
                     <p className='title--bold'>{price} ₽</p>
-                    <BasketButton type='button' className='title--medium'>В корзину</BasketButton>
+                    <ButtonContainer>
+                        <BasketButton type='button' className='title--medium'>В корзину</BasketButton>
+                        <LikeButton>
+                            <svg width="20" height="17" viewBox="0 0 20 17" fill="#fff" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M2.335 9.106h0a4.792 4.792 0 116.828-6.708l.597.667.596-.667a4.792 4.792 0 116.828 6.708l-7.424 6.88-7.425-6.88z" strokeWidth="1.6"></path></svg>
+                        </LikeButton>
+                    </ButtonContainer>
+
                 </ProductContent>
-                    {is_new ? <ProductLabel> Новинка</ProductLabel> : null}
+                {is_new ? <ProductLabel> Новинка</ProductLabel> : null}
             </ProductItemContainer>
         </>
     )
