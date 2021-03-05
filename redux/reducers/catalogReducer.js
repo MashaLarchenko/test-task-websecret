@@ -3,7 +3,8 @@ import {
     SET_MINVALUE,
     SET_MAXVALUE,
     SET_BRANDS,
-    GET_ALL
+    GET_ALL,
+    ERROR_DATA
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -48,6 +49,11 @@ const catalogReducer = (state = initialState, action) => {
                 brands: action.payload.brands.items
             }
 
+        case ERROR_DATA:
+            return {
+                ...state,
+                error: action.payload
+            }
         default:
             return state;
     }

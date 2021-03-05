@@ -3,7 +3,8 @@ import {
   SET_BRANDS,
   SET_MAXVALUE,
   SET_MINVALUE,
-  GET_ALL
+  GET_ALL,
+  ERROR_DATA
 } from './actionTypes';
 
 

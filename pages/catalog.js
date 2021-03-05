@@ -1,13 +1,12 @@
 import Filter from '../components/Filter/Filter'
-import CatalogContainer from '../components/Catalog/CatalogContainer'
+import CatalogContainer from '../components/Catalog/ProductContainer'
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getAll } from '../redux/actions';
 
 function Catalog({ catalog, brands }) {
 
   const dispatch = useDispatch();
-  console.log(catalog,'DATA')
   useEffect(() => {
     dispatch(getAll({catalog, brands}))
   }, [])

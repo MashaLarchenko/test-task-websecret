@@ -6,11 +6,16 @@ import { fetchData, setActiveBrands } from '../../redux/actions';
 
 const BrandInputContainer = styled.div`
 display: flex;
+flex-direction: column;
 font-family: Montserrat;
 font-style: normal;
 font-weight: 500;
 font-size: 14px;
 line-height: 140%;
+&>div {
+    display: flex;
+    align-items: center;
+}
 `
 
 const BrandInput = styled.input`
@@ -23,45 +28,54 @@ border: 1px solid #DBDBDB;
 text-align: center;
 `
 
+const BrandLabel = styled.label`
+margin-left: 9px;
+`
+
 function BrandContainer() {
     const { brands, min, max } = useSelector(state => state.catalog);
     const dispatch = useDispatch();
-    const [activeFilter, setfilteredBrands] = useState(['1', '2', '3']);
+    const [activeFilter, setFilteredBrands] = useState([]);
 
     const handleBrandChecked = (brand, e) => {
         if (e.target.checked) {
-            setfilteredBrands(
+            setFilteredBrands(
                 [...activeFilter, brand]
             );
             return;
         }
+
         activeFilter.forEach((item, idx) => {
             if (item.title === brand.title) {
-                console.log(2)
-
                 const newFilter = [...activeFilter];
                 newFilter.splice(idx, 1);
-                setfilteredBrands(newFilter);
+                setFilteredBrands(newFilter);
             }
         })
 
     }
 
     useEffect(() => {
-        const brandsValues = activeFilter.map(brand => brand.value);
+        let brandQuery = '';
+        activeFilter.forEach(brand => {
+           brandQuery += `brands[][]=${brand.value}&`;
+        }
+        );
+
+        console.log(brands,  'IN BRA')
         dispatch(setActiveBrands(activeFilter))
-        dispatch(fetchData(`brands=${brandsValues}&price[min]=${min}&price[max]=${max}`))
+        dispatch(fetchData(`${brandQuery}price[min]=${min}&price[max]=${max}`))
 
     }, [activeFilter])
 
     return (
         <>
             <BrandInputContainer>
-                <h5>Бренд</h5>
+                <h5 className="title--bold">Бренд</h5>
                 {brands.map((brand, idx) => {
                     return <div key={idx} >
-                        <BrandInput type="checkbox" value={brand.title} id={`brand${brand}`} onChange={(e) => handleBrandChecked(brand, e)} />
-                        <label htmlFor={`brand${brand}`}>{brand.title}</label>
+                        <BrandInput type="checkbox" value={brand.title} id={`brand${brand.title}`} onChange={(e) => handleBrandChecked(brand, e)} />
+                        <BrandLabel htmlFor={`brand${brand.title}`} className='title__medium'>{brand.title}</BrandLabel>
                     </div>
                 }
 
